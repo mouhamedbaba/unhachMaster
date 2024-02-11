@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultat</title>
+    <!-- Ajout de Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl font-semibold text-center mb-5">Résultat</h1>
+        {% if password_found %}
+            <p class="text-green-600 text-xl text-center">Mot de passe trouvé et haché avec succès!</p>
+            <p class="text-center text-lg mt-5">Mot de passe: {{ password }}</p>
+            <div class="mt-10">
+                <h2 class="text-xl font-semibold mb-3">Mots de passe précédemment trouvés:</h2>
+                <ul class="list-disc list-inside">
+                    {% for row in db_data %}
+                        <li>Mot de passe: {{ row.password }} (Hash: {{ row.hash }})</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p class="text-red-600 text-xl text-center">Mot de passe non trouvé!</p>
+        {% endif %}
+    </div>
+</body>
+</html>

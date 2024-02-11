@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dehasher Mot de Passe</title>
+    <!-- Ajout de Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-200">
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl font-semibold text-center mb-5">Dehasher Mot de Passe</h1>
+        <form action="/" method="post" class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
+            <div class="mb-4">
+                <label for="hashed_password" class="block text-gray-700 font-bold mb-2">Entrez le mot de passe hashé:</label>
+                <input type="text" id="hashed_password" name="hashed_password"  required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="digit_number" class="block text-gray-700 font-bold mb-2">Entrez le nombre de chiffres:</label>
+                <input type="number" id="digit_number" name="digit_number" required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="have_special_char" class="block text-gray-700 font-bold mb-2">Avez-vous des caractères spéciaux (Oui/Non):</label>
+                <input type="text" id="have_special_char" name="have_special_char" required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="range_caracters_min" class="block text-gray-700 font-bold mb-2">Nombre de caractères minimum:</label>
+                <input type="number" id="range_caracters_min" name="range_caracters_min" required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="range_caracters_max" class="block text-gray-700 font-bold mb-2">Nombre de caractères maximum:</label>
+                <input type="number" id="range_caracters_max" name="range_caracters_max" required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" id="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+
+        function about_password() {
+            digit_number = document.getElementById("digit_number").value;
+            haveSpecialChar = document.getElementById("have_special_char").value;
+            rangecarreactersmin = document.getElementById("range_caracters_min").value;
+            rangecarreactersmax = document.getElementById("range_caracters_max").value;
+            return digit_number, haveSpecialChar, rangecarreactersmin, rangecarreactersmax;
+        }
+
+        btn_submit = document.getElementById("submit");
+        btn_submit.addEventListener("click", function(e) {
+            const { digit_number, haveSpecialChar, rangecarreactersmin, rangecarreactersmax } = about_password();
+            if (!digit_number || !haveSpecialChar || !rangecarreactersmin || !rangecarreactersmax) {
+                return;
+            } else {
+                this.innerHTML = "Processing...."
+                this.classList.add('cursor-not-allowed')
+                this.classList.remove('hover:bg-blue-700')
+                this.classList.add('opacity-50')
+                $("#submit").attr("disabled", true)
+            }
+            
+
+        });
+
+ 
+    </script>
+
+</body>
+</html>
